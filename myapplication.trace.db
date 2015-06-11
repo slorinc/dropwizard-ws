@@ -1,0 +1,42 @@
+06-11 13:14:36 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Column "AL.VISITOR" not found; SQL statement:
+SELECT US.email, AL.timestamp 
+FROM USER US
+INNER JOIN ACCESSLOG AL
+ON US.ID = AL.VISITOR
+WHERE AL.USERID =1 [42122-176]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	at org.h2.message.DbException.get(DbException.java:178)
+	at org.h2.message.DbException.get(DbException.java:154)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:148)
+	at org.h2.expression.Comparison.optimize(Comparison.java:181)
+	at org.h2.expression.ConditionAndOr.optimize(ConditionAndOr.java:132)
+	at org.h2.command.dml.Select.prepare(Select.java:834)
+	at org.h2.command.Parser.prepareCommand(Parser.java:248)
+	at org.h2.engine.Session.prepareLocal(Session.java:442)
+	at org.h2.engine.Session.prepareCommand(Session.java:384)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1188)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:172)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:160)
+	at sun.reflect.GeneratedMethodAccessor68.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at com.onseven.dbvis.h.B.B.ā(Z:194)
+	at com.onseven.dbvis.h.B.F$A.call(Z:2515)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+06-11 13:41:35 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT TOP 3 US.EMAIL, AL.TIMESTAMP 
+FROM USER US
+INNER JOIN ACCESSLOG AL
+ON US.ID = AL.VISITORID
+WHERE AL.USERID =1
+DESC[*] "; SQL statement:
+SELECT TOP 3 US.email, AL.timestamp 
+FROM USER US
+INNER JOIN ACCESSLOG AL
+ON US.ID = AL.VISITORID
+WHERE AL.USERID =1
+DESC [42000-176]
