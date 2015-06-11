@@ -5,9 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.vcint</groupId>
-    <artifactId>firstdropwizard</artifactId>
+    <artifactId>dropwizard-ws</artifactId>
     <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
+
+    <name>dropwizard-ws</name>
 
     <modules>
 <!--    <module>project-api</module>
