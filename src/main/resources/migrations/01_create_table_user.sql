@@ -8,4 +8,4 @@ CREATE TABLE USER (
 
 );
 
---rollback DROP TABLE clicks;
+--rollback DROP TABLE USER;

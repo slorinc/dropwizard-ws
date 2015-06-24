@@ -6,16 +6,10 @@
 
     <groupId>com.vcint</groupId>
     <artifactId>dropwizard-ws</artifactId>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
     <version>0.0.1-SNAPSHOT</version>
 
     <name>dropwizard-ws</name>
-
-    <modules>
-<!--    <module>project-api</module>
-        <module>project-client</module>-->
-        <module>project-application</module>
-    </modules>
 
     <properties>
         <!--<dropwizard.version>0.8.1</dropwizard.version>-->
@@ -26,38 +20,37 @@
         <h2.version>1.4.187</h2.version>
     </properties>
 
+
     <dependencies>
-        <dependency>
+
+    <dependency>
             <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-core</artifactId>
             <version>${dropwizard.version}</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-jdbi</artifactId>
             <version>${dropwizard.version}</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-migrations</artifactId>
             <version>${dropwizard.version}</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-testing</artifactId>
             <version>${dropwizard.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>${h2.version}</version>
-            <scope>compile</scope>
         </dependency>
+
     </dependencies>
+
 
     <build>
         <plugins>
@@ -119,7 +112,7 @@
                     <mainClass>com.slorinc.myapplication.MyService</mainClass>
                     <arguments>
                         <argument>server</argument>
-                        <argument>project-application\configuration.yml</argument>
+                        <argument>configuration.yml</argument>
                     </arguments>
                 </configuration>
             </plugin>

@@ -10,13 +10,13 @@ Uncompress or zip file and issue
 in the extracted folder.
 To create the database issue the following command in the project root:
 
-  java -jar project-application\target\project-application-0.0.1-SNAPSHOT.jar db migrate project-application\configuration.yml
+  java -jar target\dropwizard-ws-0.0.1-SNAPSHOT.jar db migrate configuration.yml
 
 To start the project run one of the following commands in the project root:
   
-  java -jar project-application\target\project-application-0.0.1-SNAPSHOT.jar server project-application\configuration.yml
+  java -jar target\dropwizard-ws-0.0.1-SNAPSHOT.jar server configuration.yml
 
-  mvn clean compile exec:java -pl project-application
+  mvn clean compile exec:java
 
 Accessing the Web Services
 
