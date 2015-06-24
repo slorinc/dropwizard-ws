@@ -1,5 +1,6 @@
 # dropwizard-ws
-Dropwizard project using H2/Jerdey/Jackson
+
+Dropwizard project using H2/Jerdey/Jackson/Tests
 
 Instructions to run the project
 
@@ -8,6 +9,7 @@ Uncompress or zip file and issue
   mvn clean install
 
 in the extracted folder.
+
 To create the database issue the following command in the project root:
 
   java -jar target\dropwizard-ws-0.0.1-SNAPSHOT.jar db migrate configuration.yml
