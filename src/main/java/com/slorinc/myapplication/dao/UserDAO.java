@@ -33,7 +33,7 @@ public interface UserDAO {
      * Last 10 visitor Ids and timestamp of the last 10 days for userId
      *
      * @param userId userId
-     * @return
+     * @return Last 10 visitor Ids and timestamp of the last 10 days for userId
      */
     @SqlQuery("SELECT TOP 10 US.email, AL.timestamp FROM USER US INNER JOIN ACCESSLOG AL ON US.id = AL.visitorid WHERE AL.userid = :userid AND AL.timestamp > SYSDATE-10 ORDER BY AL.timestamp DESC")
     @RegisterMapper(AccessInfoMapper.class)

@@ -24,7 +24,6 @@ import static org.mockito.Mockito.*;
 
 /**
  * ServiceResourceImplTest
- *
  */
 public class ServiceResourceImplTest {
 
@@ -36,7 +35,7 @@ public class ServiceResourceImplTest {
             .addResource(new ServiceResourceImpl(dao))
             .build();
 
-    private final List<AccessInfoVO> returnList = Arrays.asList(new AccessInfoVO[]{new AccessInfoVO("ragnar@gmail.com", new DateTime(1435145298438L, DateTimeZone.UTC)), new AccessInfoVO("bjorn@gmail.com", new DateTime(1435145297966L, DateTimeZone.UTC))});
+    private final List<AccessInfoVO> returnList = Arrays.asList(new AccessInfoVO("ragnar@gmail.com", new DateTime(1435145298438L, DateTimeZone.UTC)), new AccessInfoVO("bjorn@gmail.com", new DateTime(1435145297966L, DateTimeZone.UTC)));
     private final VisitorVO visitorVO = new VisitorVO(1L);
 
     @Before

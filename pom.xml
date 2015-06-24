@@ -8,7 +8,6 @@
     <artifactId>dropwizard-ws</artifactId>
     <packaging>jar</packaging>
     <version>0.0.1-SNAPSHOT</version>
-
     <name>dropwizard-ws</name>
 
     <properties>
@@ -16,6 +15,10 @@
         <dropwizard.version>0.9.0-rc1</dropwizard.version>
         <maven.shade.plugin>2.3</maven.shade.plugin>
         <maven.jar.plugin>2.6</maven.jar.plugin>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <exec-maven-plugin.version>1.4.0</exec-maven-plugin.version>
         <h2.version>1.4.187</h2.version>
     </properties>

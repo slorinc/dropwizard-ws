@@ -18,7 +18,7 @@ public class ServiceHeathCheck extends HealthCheck {
     /**
      * Checks if all three users where inserted into the DB
      *
-     * @return
+     * @return Result.healthy if test is successful
      * @throws Exception
      */
     @Override

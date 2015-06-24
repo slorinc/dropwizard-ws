@@ -28,7 +28,7 @@ public class ServiceResourceImpl implements ServiceResource {
     }
 
     /**
-     * Endpoint to view the users who viewed this user’s profile in the past
+     * Endpoint to view the users who viewed this userâ€™s profile in the past
      *
      * @param userId userId
      * @return JSON containing the list of visitors and timestamps
