@@ -7,8 +7,6 @@ import org.joda.time.DateTime;
 /**
  * AccessInfo
  *
- * @author <a href="mailto:lorinc.sonnevend@betvictor.com">Lorinc Sonnevend</a>
- *         6/11/2015
  */
 @JsonRootName("user")
 public class AccessInfoVO {
@@ -18,6 +16,7 @@ public class AccessInfoVO {
 
     public AccessInfoVO() {
     }
+
     public AccessInfoVO(String email, DateTime timestamp) {
         this.email = email;
         this.timestamp = timestamp;

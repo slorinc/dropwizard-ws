@@ -6,8 +6,6 @@ import com.slorinc.myapplication.dao.UserDAO;
 /**
  * ServiceHeathCheck
  *
- * @author <a href="mailto:lorinc.sonnevend@betvictor.com">Lorinc Sonnevend</a>
- *         6/10/2015
  */
 public class ServiceHeathCheck extends HealthCheck {
 
@@ -19,11 +17,12 @@ public class ServiceHeathCheck extends HealthCheck {
 
     /**
      * Checks if all three users where inserted into the DB
+     *
      * @return
      * @throws Exception
      */
     @Override
     protected Result check() throws Exception {
-        return dao.listUsers().size()==3?Result.healthy():Result.unhealthy("Data migration error!");
+        return dao.listUsers().size() == 3 ? Result.healthy() : Result.unhealthy("Data migration error!");
     }
 }

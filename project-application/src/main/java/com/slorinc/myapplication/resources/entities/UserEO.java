@@ -3,8 +3,6 @@ package com.slorinc.myapplication.resources.entities;
 /**
  * UserEO
  *
- * @author <a href="mailto:lorinc.sonnevend@betvictor.com">Lorinc Sonnevend</a>
- *         6/11/2015
  */
 public class UserEO {
 

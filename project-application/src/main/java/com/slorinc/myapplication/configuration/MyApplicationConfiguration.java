@@ -10,8 +10,6 @@ import javax.validation.constraints.NotNull;
 /**
  * MyApplicationConfiguration
  *
- * @author <a href="mailto:lorinc.sonnevend@betvictor.com">Lorinc Sonnevend</a>
- *         6/10/2015
  */
 public class MyApplicationConfiguration extends Configuration {
 

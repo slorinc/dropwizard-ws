@@ -5,8 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * VisitorVO
  *
- * @author <a href="mailto:lorinc.sonnevend@betvictor.com">Lorinc Sonnevend</a>
- *         6/11/2015
  */
 public class VisitorVO {
     private Long id;

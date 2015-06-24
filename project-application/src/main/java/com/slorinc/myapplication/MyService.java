@@ -15,8 +15,6 @@ import org.skife.jdbi.v2.DBI;
 /**
  * MyService
  *
- * @author <a href="mailto:lorinc.sonnevend@betvictor.com">Lorinc Sonnevend</a>
- *         6/10/2015
  */
 public class MyService extends Application<MyApplicationConfiguration> {
 
@@ -40,11 +38,11 @@ public class MyService extends Application<MyApplicationConfiguration> {
 
     @Override
     public void run(MyApplicationConfiguration configuration, Environment environment) throws Exception {
-        final DBIFactory factory = new DBIFactory();
-        final DBI jdbi = factory.build(environment, configuration.getDataSourceFactory(), "h2");
 
+        final DBI jdbi = new DBIFactory().build(environment, configuration.getDataSourceFactory(), "h2");
         final UserDAO dao = jdbi.onDemand(UserDAO.class);
         final ServiceHeathCheck noMessageHeathCheck = new ServiceHeathCheck(dao);
+
         environment.healthChecks().register("DAO check",noMessageHeathCheck);
         environment.jersey().register(new ServiceResourceImpl(dao));
 

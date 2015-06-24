@@ -10,8 +10,6 @@ import javax.ws.rs.core.Response;
 /**
  * ServiceResource
  *
- * @author <a href="mailto:lorinc.sonnevend@betvictor.com">Lorinc Sonnevend</a>
- *         6/11/2015
  */
 public interface ServiceResource {
     @GET

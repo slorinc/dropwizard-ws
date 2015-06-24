@@ -15,8 +15,6 @@ import java.util.List;
 /**
  * UserDAO
  *
- * @author <a href="mailto:lorinc.sonnevend@betvictor.com">Lorinc Sonnevend</a>
- *         6/10/2015
  */
 @RegisterMapper(UserEOMappper.class)
 public interface UserDAO {

@@ -1,9 +1,8 @@
 package com.slorinc.myapplication.resources;
 
-import com.slorinc.myapplication.resources.views.AccessInfoVO;
-import com.slorinc.myapplication.resources.views.VisitorVO;
-import com.slorinc.myapplication.resources.interfaces.ServiceResource;
 import com.slorinc.myapplication.dao.UserDAO;
+import com.slorinc.myapplication.resources.interfaces.ServiceResource;
+import com.slorinc.myapplication.resources.views.VisitorVO;
 import io.dropwizard.jersey.params.LongParam;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
@@ -12,13 +11,10 @@ import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.List;
 
 /**
  * ServiceResource
  *
- * @author <a href="mailto:lorinc.sonnevend@betvictor.com">Lorinc Sonnevend</a>
- *         6/10/2015
  */
 @Path("/{user}")
 @Produces(MediaType.APPLICATION_JSON)

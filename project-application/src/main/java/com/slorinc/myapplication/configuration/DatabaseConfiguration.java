@@ -9,8 +9,6 @@ import javax.validation.constraints.NotNull;
 /**
  * DatabaseConfiguration
  *
- * @author <a href="mailto:lorinc.sonnevend@betvictor.com">Lorinc Sonnevend</a>
- *         6/10/2015
  */
 public class DatabaseConfiguration extends Configuration {
 
