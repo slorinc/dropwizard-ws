@@ -1,15 +1,18 @@
 package com.slorinc.myapplication.resources;
 
+import com.slorinc.myapplication.resources.views.AccessInfoVO;
 import com.slorinc.myapplication.resources.views.VisitorVO;
 import com.slorinc.myapplication.resources.interfaces.ServiceResource;
 import com.slorinc.myapplication.dao.UserDAO;
 import io.dropwizard.jersey.params.LongParam;
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 
 import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 /**
  * ServiceResource
@@ -20,7 +23,7 @@ import javax.ws.rs.core.Response;
 @Path("/{user}")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class ServiceResourceImpl implements com.slorinc.myapplication.resources.interfaces.ServiceResource {
+public class ServiceResourceImpl implements ServiceResource {
 
     private final UserDAO userDAO;
 
@@ -50,7 +53,7 @@ public class ServiceResourceImpl implements com.slorinc.myapplication.resources.
     @POST
     public Response logAccess(@DefaultValue("1") @PathParam("user") LongParam userId,
                               @Valid VisitorVO visitor) {
-        userDAO.logAccess(userId.get(), visitor.getId(), new DateTime());
+        userDAO.logAccess(userId.get(), visitor.getId(), new DateTime(DateTimeZone.UTC));
 
         return Response.status(Response.Status.OK).build();
     }

@@ -1,5 +1,7 @@
 package com.slorinc.myapplication.resources.views;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * VisitorVO
  *
@@ -16,10 +18,12 @@ public class VisitorVO {
     public VisitorVO() {
     }
 
+    @JsonProperty
     public Long getId() {
         return id;
     }
 
+    @JsonProperty
     public void setId(Long id) {
         this.id = id;
     }

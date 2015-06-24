@@ -1,5 +1,6 @@
 package com.slorinc.myapplication.resources.views;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import org.joda.time.DateTime;
 
@@ -22,18 +23,22 @@ public class AccessInfoVO {
         this.timestamp = timestamp;
     }
 
+    @JsonProperty
     public String getEmail() {
         return email;
     }
 
+    @JsonProperty
     public void setEmail(String email) {
         this.email = email;
     }
 
+    @JsonProperty
     public DateTime getTimestamp() {
         return timestamp;
     }
 
+    @JsonProperty
     public void setTimestamp(DateTime timestamp) {
         this.timestamp = timestamp;
     }
