@@ -5,6 +5,15 @@ server:
   connector:
     type: http
     port: 9090
+  requestLog:
+    timeZone: UTC
+    appenders:
+      - type: file
+        currentLogFilename: ./log/access.log
+        threshold: ALL
+        archive: true
+        archivedLogFilenamePattern: ./log/access-%d.log
+        archivedFileCount: 5
 database:
   driverClass: org.h2.Driver
   user: sa
@@ -32,10 +41,10 @@ logging:
   level: INFO
   appenders:
     - type: file
-      currentLogFilename: ./logs/application.log
+      currentLogFilename: ./log/application.log
       threshold: ALL
       archive: true
-      archivedLogFilenamePattern: ./logs/application-%d.log
+      archivedLogFilenamePattern: ./log/application-%d.log
       archivedFileCount: 5
       timeZone: UTC
     - type: console
