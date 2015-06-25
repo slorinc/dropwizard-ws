@@ -1,7 +1,6 @@
 package com.slorinc.myapplication.resources.views;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
 import org.joda.time.DateTime;
 
 import java.util.Objects;
@@ -9,7 +8,6 @@ import java.util.Objects;
 /**
  * AccessInfo
  */
-@JsonRootName("user")
 public class AccessInfoVO {
 
     private String email;

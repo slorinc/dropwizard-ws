@@ -14,7 +14,6 @@ import javax.ws.rs.core.Response;
 
 /**
  * ServiceResource
- *
  */
 @Path("/{user}")
 @Produces(MediaType.APPLICATION_JSON)
@@ -42,16 +41,17 @@ public class ServiceResourceImpl implements ServiceResource {
     /**
      * Endpoint to store the views of user profiles
      *
-     * @param userId visited user's userId
+     * @param userId  visited user's userId
      * @param visitor visitor's userId
      * @return returns with response status 200
      */
     @POST
+    @Produces(MediaType.TEXT_PLAIN)
     public Response logAccess(@DefaultValue("1") @PathParam("user") LongParam userId,
                               @Valid VisitorVO visitor) {
         userDAO.logAccess(userId.get(), visitor.getId(), new DateTime(DateTimeZone.UTC));
 
-        return Response.status(Response.Status.OK).build();
+        return Response.status(Response.Status.OK).entity(String.format("Visitor logged with ID %d.", visitor.getId())).build();
     }
 
 }
