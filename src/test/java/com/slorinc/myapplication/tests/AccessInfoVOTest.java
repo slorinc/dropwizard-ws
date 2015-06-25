@@ -32,8 +32,7 @@ public class AccessInfoVOTest {
     public void deserializesFromJSON() throws Exception {
         final AccessInfoVO accessInfoVO = new AccessInfoVO("ragnar@gmail.com", new DateTime(1435145298438L, DateTimeZone.UTC));
         final AccessInfoVO expected = MAPPER.readValue(fixture("fixtures/accessInfo.json"), AccessInfoVO.class);
-        assertThat(expected.getEmail()).isEqualTo(accessInfoVO.getEmail());
-        assertThat(expected.getTimestamp()).isEqualTo(accessInfoVO.getTimestamp());
+        assertThat(accessInfoVO).isEqualTo(expected);
     }
 
     @Test(expected = JsonParseException.class)

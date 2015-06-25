@@ -10,7 +10,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * VisitorVOTest
- *
  */
 public class VisitorVOTest {
 
@@ -29,7 +28,7 @@ public class VisitorVOTest {
     @Test
     public void deserializesFromJSON() throws Exception {
         final VisitorVO visitorVO = new VisitorVO(1L);
-        assertThat(MAPPER.readValue(fixture("fixtures/visitor.json"), VisitorVO.class).getId()).isEqualTo(visitorVO.getId());
+        assertThat(visitorVO).isEqualTo(MAPPER.readValue(fixture("fixtures/visitor.json"), VisitorVO.class));
     }
 
 }

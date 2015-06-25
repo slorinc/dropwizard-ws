@@ -28,3 +28,18 @@ database:
 
     # the minimum amount of time an connection must sit idle in the pool before it is eligible for eviction
     minIdleTime: 1 minute
+logging:
+  level: INFO
+  appenders:
+    - type: file
+      currentLogFilename: ./logs/application.log
+      threshold: ALL
+      archive: true
+      archivedLogFilenamePattern: ./logs/application-%d.log
+      archivedFileCount: 5
+      timeZone: UTC
+    - type: console
+      threshold: ALL
+      timeZone: UTC
+      target: stdout
+

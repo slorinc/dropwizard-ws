@@ -47,10 +47,7 @@ public class ServiceResourceImplTest {
     public void testAccessListByUserID() throws Exception {
         final List<AccessInfoVO> list = MAPPER.readValue(resources.client().target("/1/list").request().get(String.class), new TypeReference<ArrayList<AccessInfoVO>>() {
         });
-        assertThat(list.get(0).getEmail()).isEqualTo(returnList.get(0).getEmail());
-        assertThat(list.get(0).getTimestamp()).isEqualTo(returnList.get(0).getTimestamp());
-        assertThat(list.get(1).getEmail()).isEqualTo(returnList.get(1).getEmail());
-        assertThat(list.get(1).getTimestamp()).isEqualTo(returnList.get(1).getTimestamp());
+        assertThat(list).isEqualTo(returnList);
         verify(dao).accessListByUserID(1L);
     }
 

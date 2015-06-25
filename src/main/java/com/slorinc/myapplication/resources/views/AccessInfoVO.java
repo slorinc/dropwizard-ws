@@ -4,9 +4,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import org.joda.time.DateTime;
 
+import java.util.Objects;
+
 /**
  * AccessInfo
- *
  */
 @JsonRootName("user")
 public class AccessInfoVO {
@@ -40,5 +41,19 @@ public class AccessInfoVO {
     @JsonProperty
     public void setTimestamp(DateTime timestamp) {
         this.timestamp = timestamp;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AccessInfoVO that = (AccessInfoVO) o;
+        return Objects.equals(email, that.email) &&
+                Objects.equals(timestamp, that.timestamp);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(email, timestamp);
     }
 }
