@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Created by s_lor_000 on 6/25/2015.
  */
 public class ErrorVO {
+
     @JsonProperty
     private int code;
 
