@@ -21,7 +21,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <exec-maven-plugin.version>1.4.0</exec-maven-plugin.version>
         <h2.version>1.4.187</h2.version>
-        <clover.version>4.0.4</clover.version>
+        <clover.version>4.0.3</clover.version>
     </properties>
 
     <dependencyManagement>
