@@ -1,51 +1,59 @@
 # dropwizard-ws
 
+
 Dropwizard project using H2/Jerdey/Jackson/Tests
 
 Instructions to run the project
+--
 
 Uncompress or zip file and issue
 
-  mvn clean install
+    mvn clean install
 
 in the extracted folder.
 
 To create the database issue the following command in the project root:
 
-  java -jar target\dropwizard-ws-0.0.1-SNAPSHOT.jar db migrate configuration.yml
+    java -jar target\dropwizard-ws-0.0.1-SNAPSHOT.jar db migrate configuration.yml
 
 To start the project run one of the following commands in the project root:
   
-  java -jar target\dropwizard-ws-0.0.1-SNAPSHOT.jar server configuration.yml
+    java -jar target\dropwizard-ws-0.0.1-SNAPSHOT.jar server configuration.yml
 
-  mvn clean compile exec:java
+or
+
+    mvn clean compile exec:java
 
 Accessing the Web Services
+--
 
 Send a POST request to
 
-  http://localhost:9090/application/{userId}
+    http://localhost:9090/application/{userId}
 
 to load a profile with the following JSON body:
 
-  {
-      "id": 1
-  }
+    {
+        "id": 1
+    }
 
 There are three pre-created users with ids: 1,2 and 3.
 
 To get a list of access history send a GET request to:
   
-  http://localhost:9090/application/1/list
+    http://localhost:9090/application/1/list
+
+Logging
+--
 
 Log files are created in the ./log/ folder:
   
-  application.log is the application log
-  access.log is the HTTP request log
+ - application.log is the application log
+ - access.log is the HTTP request log
 
-Clover:
-
+Clover
+--
   Run for generating Atlassian Clover report:
-    
+        
     mvn clean clover2:setup test clover2:aggregate clover2:clover -P codecoverage
 
