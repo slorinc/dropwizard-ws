@@ -14,6 +14,7 @@ server:
         archive: true
         archivedLogFilenamePattern: ./log/access-%d.log
         archivedFileCount: 5
+
 database:
   driverClass: org.h2.Driver
   user: sa
@@ -37,6 +38,7 @@ database:
 
     # the minimum amount of time an connection must sit idle in the pool before it is eligible for eviction
     minIdleTime: 1 minute
+
 logging:
   level: INFO
   appenders:
@@ -51,4 +53,3 @@ logging:
       threshold: ALL
       timeZone: UTC
       target: stdout
-
