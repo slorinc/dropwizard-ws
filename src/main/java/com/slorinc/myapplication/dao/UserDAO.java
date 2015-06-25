@@ -40,10 +40,18 @@ public interface UserDAO {
     List<AccessInfoVO> accessListByUserID(@Bind("userid") Long userId);
 
     /**
-     * Query implemented for HealthCheck
+     * Lists all users
      * @return list of Users
      */
     @SqlQuery("SELECT id,name,email FROM USER")
     List<UserEO> listUsers();
+
+    /**
+     * Check if user exists
+     *
+     * @return true if exists
+     */
+    @SqlQuery("SELECT COUNT(id)FROM USER WHERE ID=:userid")
+    boolean checkUser(@Bind("userid") Long userId);
 
 }

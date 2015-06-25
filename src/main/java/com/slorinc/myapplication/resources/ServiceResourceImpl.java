@@ -2,25 +2,30 @@ package com.slorinc.myapplication.resources;
 
 import com.slorinc.myapplication.dao.UserDAO;
 import com.slorinc.myapplication.resources.interfaces.ServiceResource;
+import com.slorinc.myapplication.resources.views.AccessInfoVO;
+import com.slorinc.myapplication.resources.views.ErrorVO;
 import com.slorinc.myapplication.resources.views.VisitorVO;
 import io.dropwizard.jersey.params.LongParam;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 /**
  * ServiceResource
  */
 @Path("/{user}")
-@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
 public class ServiceResourceImpl implements ServiceResource {
 
     private final UserDAO userDAO;
+
+    final static Logger LOG = LoggerFactory.getLogger(ServiceResourceImpl.class);
 
     public ServiceResourceImpl(UserDAO userDAO) {
         this.userDAO = userDAO;
@@ -34,8 +39,15 @@ public class ServiceResourceImpl implements ServiceResource {
      */
     @GET
     @Path("/list")
+    @Produces(MediaType.APPLICATION_JSON)
     public Response accessListByUserID(@DefaultValue("1") @PathParam("user") LongParam userId) {
-        return Response.ok(userDAO.accessListByUserID(userId.get())).build();
+        if (!userDAO.checkUser(userId.get())) {
+            LOG.error(String.format("Trying to access a non-existing userId (ID: %d)", userId.get()));
+            return Response.status(Response.Status.NOT_FOUND).entity(new ErrorVO(404, String.format("User does not exists. (ID: %d)", userId.get()))).build();
+        }
+        List<AccessInfoVO> entity = userDAO.accessListByUserID(userId.get());
+        LOG.info(String.format("Access list successfully retrieved for userId %d with %d elements.", userId.get(), entity.size()));
+        return Response.ok(entity).build();
     }
 
     /**
@@ -46,12 +58,22 @@ public class ServiceResourceImpl implements ServiceResource {
      * @return returns with response status 200
      */
     @POST
-    @Produces(MediaType.TEXT_PLAIN)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.TEXT_PLAIN, MediaType.APPLICATION_JSON})
     public Response logAccess(@DefaultValue("1") @PathParam("user") LongParam userId,
                               @Valid VisitorVO visitor) {
-        userDAO.logAccess(userId.get(), visitor.getId(), new DateTime(DateTimeZone.UTC));
+        if (!userDAO.checkUser(userId.get())) {
+            LOG.error(String.format("Trying to access a non-existing userId (ID: %d)", userId.get()));
+            return Response.status(Response.Status.NOT_FOUND).entity(new ErrorVO(404, String.format("User does not exists. (ID: %d)", userId.get()))).build();
+        }
+        try {
+            userDAO.logAccess(userId.get(), visitor.getId(), new DateTime(DateTimeZone.UTC));
+        } catch (Throwable e) {
+            LOG.error(String.format("Visitor does not exits (ID: %d)", visitor.getId()));
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new ErrorVO(500, String.format("Visitor does not exits (ID: %d)", visitor.getId()))).build();
+        }
 
-        return Response.status(Response.Status.OK).entity(String.format("Visitor logged with ID %d.", visitor.getId())).build();
+        LOG.info(String.format("Visitor for userId %d logged with ID %d.", userId.get(), visitor.getId()));
+        return Response.status(Response.Status.OK).entity(String.format("Visitor for userId %d logged with ID %d.", userId.get(), visitor.getId())).build();
     }
-
 }
