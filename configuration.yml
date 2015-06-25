@@ -5,6 +5,7 @@ server:
   connector:
     type: http
     port: 9090
+  # access logging
   requestLog:
     timeZone: UTC
     appenders:

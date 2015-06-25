@@ -38,4 +38,14 @@ To get a list of access history send a GET request to:
   
   http://localhost:9090/application/1/list
 
+Log files are created in the ./log/ folder:
+  
+  application.log is the application log
+  access.log is the HTTP request log
+
+Clover:
+
+  Run for generating Atlassian Clover report:
+    
+    mvn clean clover2:setup test clover2:aggregate clover2:clover -P codecoverage
 
