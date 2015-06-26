@@ -1,6 +1,7 @@
 package com.slorinc.myapplication.resources;
 
 import com.slorinc.myapplication.dao.UserDAO;
+import com.slorinc.myapplication.exceptions.UserNotFoundException;
 import com.slorinc.myapplication.resources.interfaces.ServiceResource;
 import com.slorinc.myapplication.resources.views.AccessInfoVO;
 import com.slorinc.myapplication.resources.views.ErrorVO;
@@ -41,14 +42,16 @@ public class ServiceResourceImpl implements ServiceResource {
     @Path("/list")
     @Produces(MediaType.APPLICATION_JSON)
     public Response accessListByUserID(@DefaultValue("1") @PathParam("user") LongParam userId) {
-        if (!userDAO.checkUser(userId.get())) {
-            LOG.warn(String.format("Trying to access a non-existing userId (ID: %d)", userId.get()));
+        try {
+            checkIfUserExists(userId);
+        } catch (UserNotFoundException e) {
             return Response.status(Response.Status.NOT_FOUND).entity(new ErrorVO(404, String.format("User does not exists. (ID: %d)", userId.get()))).build();
         }
         List<AccessInfoVO> entity = userDAO.accessListByUserID(userId.get());
         LOG.info(String.format("Access list successfully retrieved for userId %d with %d elements.", userId.get(), entity.size()));
         return Response.ok(entity).build();
     }
+
 
     /**
      * Endpoint to store the views of user profiles
@@ -60,10 +63,10 @@ public class ServiceResourceImpl implements ServiceResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces({MediaType.TEXT_PLAIN, MediaType.APPLICATION_JSON})
-    public Response logAccess(@DefaultValue("1") @PathParam("user") LongParam userId,
-                              @Valid VisitorVO visitor) {
-        if (!userDAO.checkUser(userId.get())) {
-            LOG.warn(String.format("Trying to access a non-existing userId (ID: %d)", userId.get()));
+    public Response logAccess(@DefaultValue("1") @PathParam("user") LongParam userId, @Valid VisitorVO visitor) {
+        try {
+            checkIfUserExists(userId);
+        } catch (UserNotFoundException e) {
             return Response.status(Response.Status.NOT_FOUND).entity(new ErrorVO(404, String.format("User does not exists. (ID: %d)", userId.get()))).build();
         }
         try {
@@ -75,5 +78,12 @@ public class ServiceResourceImpl implements ServiceResource {
 
         LOG.info(String.format("Visitor for userId %d logged with ID %d.", userId.get(), visitor.getId()));
         return Response.status(Response.Status.OK).entity(String.format("Visitor for userId %d logged with ID %d.", userId.get(), visitor.getId())).build();
+    }
+
+    private void checkIfUserExists(LongParam userId) throws UserNotFoundException {
+        if (!userDAO.checkUser(userId.get())) {
+            LOG.warn(String.format("Trying to access a non-existing userId (ID: %d)", userId.get()));
+            throw new UserNotFoundException();
+        }
     }
 }
