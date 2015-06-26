@@ -42,7 +42,7 @@ public class ServiceResourceImpl implements ServiceResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response accessListByUserID(@DefaultValue("1") @PathParam("user") LongParam userId) {
         if (!userDAO.checkUser(userId.get())) {
-            LOG.error(String.format("Trying to access a non-existing userId (ID: %d)", userId.get()));
+            LOG.warn(String.format("Trying to access a non-existing userId (ID: %d)", userId.get()));
             return Response.status(Response.Status.NOT_FOUND).entity(new ErrorVO(404, String.format("User does not exists. (ID: %d)", userId.get()))).build();
         }
         List<AccessInfoVO> entity = userDAO.accessListByUserID(userId.get());
@@ -63,7 +63,7 @@ public class ServiceResourceImpl implements ServiceResource {
     public Response logAccess(@DefaultValue("1") @PathParam("user") LongParam userId,
                               @Valid VisitorVO visitor) {
         if (!userDAO.checkUser(userId.get())) {
-            LOG.error(String.format("Trying to access a non-existing userId (ID: %d)", userId.get()));
+            LOG.warn(String.format("Trying to access a non-existing userId (ID: %d)", userId.get()));
             return Response.status(Response.Status.NOT_FOUND).entity(new ErrorVO(404, String.format("User does not exists. (ID: %d)", userId.get()))).build();
         }
         try {
