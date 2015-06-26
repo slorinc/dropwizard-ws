@@ -72,7 +72,7 @@ public class ServiceResourceImpl implements ServiceResource {
         try {
             userDAO.logAccess(userId.get(), visitor.getId(), new DateTime(DateTimeZone.UTC));
         } catch (Throwable e) {
-            LOG.error(String.format("Visitor does not exits (ID: %d)", visitor.getId()));
+            LOG.error(String.format("Access violation! Visitor does not exits (ID: %d)", visitor.getId()));
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new ErrorVO(500, String.format("Visitor does not exits (ID: %d)", visitor.getId()))).build();
         }
 
