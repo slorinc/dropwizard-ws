@@ -3,6 +3,7 @@ package com.slorinc.myapplication.tests;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.slorinc.myapplication.dao.UserDAO;
+import com.slorinc.myapplication.exceptions.UserNotFoundException;
 import com.slorinc.myapplication.resources.ServiceResourceImpl;
 import com.slorinc.myapplication.resources.views.AccessInfoVO;
 import com.slorinc.myapplication.resources.views.VisitorVO;
@@ -15,6 +16,7 @@ import org.junit.ClassRule;
 import org.junit.Test;
 
 import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,6 +42,8 @@ public class ServiceResourceImplTest {
 
     @Before
     public void setup() {
+        when(dao.checkUser(1L)).thenReturn(true);
+        when(dao.checkUser(4L)).thenReturn(false);
         when(dao.accessListByUserID(1L)).thenReturn(returnList);
     }
 
@@ -52,8 +56,15 @@ public class ServiceResourceImplTest {
     }
 
     @Test
+    public void testAccessListByNonExistingUserID(){
+        assertThat(resources.client().target("/4/list").request().get(Response.class).getStatus()).isEqualTo(404);
+        verify(dao).checkUser(4L);
+    }
+
+    @Test
     public void testLogAccess() throws Exception {
         final int status = resources.client().target("/1").request().post(Entity.json(visitorVO)).getStatus();
         assertThat(status).isEqualTo(200);
     }
+
 }

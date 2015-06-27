@@ -12,7 +12,7 @@ Uncompress or zip file and issue
 
 in the extracted folder.
 
-To create the database issue the following command in the project root:
+To create the database issue the following command in the project root (file separator depends on your OS!):
 
     java -jar target\dropwizard-ws-0.0.1-SNAPSHOT.jar db migrate configuration.yml
 
