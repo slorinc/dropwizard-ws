@@ -24,18 +24,13 @@
         <clover.version>4.0.3</clover.version>
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.atlassian.clover</groupId>
-                <artifactId>clover</artifactId>
-                <version>${clover.version}</version>
-                <scope>test</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <dependencies>
+        <dependency>
+            <groupId>com.atlassian.clover</groupId>
+            <artifactId>clover</artifactId>
+            <version>${clover.version}</version>
+            <scope>test</scope>
+        </dependency>
 
         <dependency>
             <groupId>io.dropwizard</groupId>
