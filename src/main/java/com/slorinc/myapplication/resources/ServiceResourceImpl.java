@@ -76,8 +76,9 @@ public class ServiceResourceImpl implements ServiceResource {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new ErrorVO(500, String.format("Visitor does not exits (ID: %d)", visitor.getId()))).build();
         }
 
-        LOG.info(String.format("Visitor for userId %d logged with ID %d.", userId.get(), visitor.getId()));
-        return Response.status(Response.Status.OK).entity(String.format("Visitor for userId %d logged with ID %d.", userId.get(), visitor.getId())).build();
+        final String errorMessage = String.format("Visitor for userId %d logged with ID %d.", userId.get(), visitor.getId());
+        LOG.info(errorMessage);
+        return Response.status(Response.Status.OK).entity(errorMessage).build();
     }
 
     private void checkIfUserExists(LongParam userId) throws UserNotFoundException {

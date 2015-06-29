@@ -11,8 +11,7 @@
     <name>dropwizard-ws</name>
 
     <properties>
-        <!--<dropwizard.version>0.8.1</dropwizard.version>-->
-        <dropwizard.version>0.9.0-rc1</dropwizard.version>
+        <dropwizard.version>0.8.1</dropwizard.version>
         <maven.shade.plugin>2.3</maven.shade.plugin>
         <maven.jar.plugin>2.6</maven.jar.plugin>
         <maven.compiler.source>1.8</maven.compiler.source>
