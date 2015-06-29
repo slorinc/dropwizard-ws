@@ -20,16 +20,9 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <exec-maven-plugin.version>1.4.0</exec-maven-plugin.version>
         <h2.version>1.4.187</h2.version>
-        <clover.version>4.0.3</clover.version>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.atlassian.clover</groupId>
-            <artifactId>clover</artifactId>
-            <version>${clover.version}</version>
-            <scope>test</scope>
-        </dependency>
 
         <dependency>
             <groupId>io.dropwizard</groupId>
@@ -51,12 +44,6 @@
             <artifactId>dropwizard-testing</artifactId>
             <version>${dropwizard.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.atlassian.maven.plugins</groupId>
-            <artifactId>maven-clover2-plugin</artifactId>
-            <version>${clover.version}</version>
-        </dependency>
-
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
