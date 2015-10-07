@@ -1,7 +1,7 @@
 # dropwizard-ws
 
 
-Dropwizard project using H2/Jerdey/Jackson/Tests
+Dropwizard project using H2/Jersey/Jackson/Tests
 
 Instructions to run the project
 --
